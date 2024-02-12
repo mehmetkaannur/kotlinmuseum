@@ -8,13 +8,12 @@ open class MuseumRoom(open val name: String, open val capacity: Int) {
         }
     }
 
-    var occupancy = 0
-        private set
+    open var occupancy = 0
 
     fun hasCapacity(): Boolean = occupancy < capacity
 
-    fun enter() {
-        if (hasCapacity() == true) {
+    open fun enter() {
+        if (hasCapacity()) {
             occupancy += 1
         } else {
             throw UnsupportedOperationException()
@@ -29,3 +28,7 @@ open class MuseumRoom(open val name: String, open val capacity: Int) {
         }
     }
 }
+
+class UnreachableRoomException(val unreachable: Set<MuseumRoom>) : Exception()
+
+class CannotExitMuseumException(val unexitable: Set<MuseumRoom>) : Exception()
