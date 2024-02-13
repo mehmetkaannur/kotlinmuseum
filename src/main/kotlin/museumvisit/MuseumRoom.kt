@@ -27,8 +27,19 @@ open class MuseumRoom(open val name: String, open val capacity: Int) {
             throw UnsupportedOperationException()
         }
     }
+
+    override fun toString(): String {
+        return name
+    }
 }
 
-class UnreachableRoomException(val unreachable: Set<MuseumRoom>) : Exception()
+class Outside(exitName: String) : MuseumRoom(exitName, Int.MAX_VALUE) {
 
-class CannotExitMuseumException(val unexitable: Set<MuseumRoom>) : Exception()
+    override var occupancy = 0
+
+    override fun enter() {
+        occupancy += 1
+    }
+}
+
+

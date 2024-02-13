@@ -6,16 +6,7 @@ open class Museum(open val name: String, val entrance: MuseumRoom) {
 
     var rooms: MutableList<MuseumRoom> = mutableListOf(entrance)
 
-    var turnstiles: MutableList<Pair<MuseumRoom, MuseumRoom?>> = mutableListOf()
-
-    inner class Outside(name: String) : MuseumRoom(name, Int.MAX_VALUE) {
-
-        override var occupancy = 0
-
-        override fun enter() {
-            occupancy += 1
-        }
-    }
+    var turnstiles: MutableList<Pair<MuseumRoom, MuseumRoom>> = mutableListOf()
 
     fun entranceHasCapacity() = this.entrance.hasCapacity()
 
@@ -36,7 +27,7 @@ open class Museum(open val name: String, val entrance: MuseumRoom) {
         }
     }
 
-    fun connectRoomTo(fromRoom: MuseumRoom, exit: Outside) {
+    fun connectRoomToExit(fromRoom: MuseumRoom, exit: Outside = Outside("Outside")) {
         if (fromRoom !in rooms || Pair(fromRoom, exit) in turnstiles) {
             throw UnsupportedOperationException()
         } else {
@@ -44,7 +35,7 @@ open class Museum(open val name: String, val entrance: MuseumRoom) {
         }
     }
 
-    fun connectRoomToExit(fromRoom: MuseumRoom, toRoom: MuseumRoom) {
+    fun connectRoomTo(fromRoom: MuseumRoom, toRoom: MuseumRoom) {
         if (fromRoom !in rooms || toRoom !in rooms ||
             fromRoom == toRoom || Pair(fromRoom, toRoom) in turnstiles
         ) {
@@ -52,5 +43,93 @@ open class Museum(open val name: String, val entrance: MuseumRoom) {
         } else {
             turnstiles.add(Pair(fromRoom, toRoom))
         }
+    }
+
+    open fun checkWellFormed(): MutableList<MuseumRoom> {
+        val reachableList: MutableList<MuseumRoom> = mutableListOf(rooms[0])
+        val exitableList: MutableList<MuseumRoom> = mutableListOf()
+        val unreachableList: MutableList<MuseumRoom> = mutableListOf()
+        val unexitableList: MutableList<MuseumRoom> = mutableListOf()
+        for (room in rooms) {
+            for (i in 0..turnstiles.size) {
+                for (turnstile in turnstiles) {
+                    if (room == turnstile.second && turnstile.first in reachableList) {
+                        reachableList.add(room)
+                    }
+                }
+            }
+            if (room !in reachableList) {
+                unreachableList.add(room)
+            }
+        }
+        for (turnstile in turnstiles) {
+            if (turnstile.second is Outside) {
+                exitableList.add(turnstile.first)
+            }
+        }
+        for (room in rooms) {
+            for (i in 0..turnstiles.size) {
+                for (turnstile in turnstiles) {
+                    if (room == turnstile.first && turnstile.second in exitableList) {
+                        exitableList.add(room)
+                    }
+                }
+            }
+            if (room !in exitableList) {
+                unexitableList.add(room)
+            }
+        }
+        if (unreachableList.size != 0) {
+            throw UnreachableRoomsException(unreachableList.toSet())
+        } else if (unexitableList.size != 0) {
+            throw CannotExitMuseumException(unexitableList.toSet())
+        } else {
+            return rooms
+        }
+    }
+
+    override fun toString(): String {
+        val stringBuilder = StringBuilder()
+        stringBuilder.append("$name\n")
+        for (room in rooms) {
+            stringBuilder.append("$room leads to: ")
+            for (turnstile in turnstiles) {
+                if (room == turnstile.first) {
+                    stringBuilder.append(turnstile.second).append(", ")
+                }
+            }
+            stringBuilder.deleteAt(stringBuilder.lastIndex).deleteAt(stringBuilder.lastIndex).append("\n")
+        }
+        return stringBuilder.toString()
+    }
+}
+
+class UnreachableRoomsException(val unreachable: Set<MuseumRoom>) : Exception() {
+    private val stringBuilder = StringBuilder()
+    override fun toString(): String {
+        for (room in unreachable) {
+            if (unreachable.size == 1) {
+                stringBuilder.append("$room")
+            } else {
+                stringBuilder.append("$room, ")
+            }
+        }
+        val newString = stringBuilder.toString()
+        return "Unreachable rooms: $newString"
+    }
+}
+
+class CannotExitMuseumException(val unexitable: Set<MuseumRoom>) : Exception() {
+    private val stringBuilder = StringBuilder()
+    override fun toString(): String {
+        for (room in unexitable) {
+            if (unexitable.size == 1) {
+                stringBuilder.append("$room")
+            } else {
+                stringBuilder.append("$room, ")
+            }
+        }
+        val newString = stringBuilder.toString()
+        return "Unreachable rooms: $newString"
     }
 }
