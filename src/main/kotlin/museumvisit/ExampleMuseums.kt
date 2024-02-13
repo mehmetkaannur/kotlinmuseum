@@ -4,7 +4,7 @@ fun createArtGallery(): Museum {
     val entrance = MuseumRoom("Entrance hall", 20)
     val exhibition = MuseumRoom("Exhibition room", 5)
     val exit = Outside("Outside")
-    val gallery = Museum("Animal sanctuary", entrance)
+    val gallery = Museum("Art gallery", entrance)
     gallery.addRoom(exhibition)
     gallery.connectRoomTo(entrance, exhibition)
     gallery.connectRoomToExit(exhibition, exit)
@@ -31,8 +31,8 @@ fun createAnimalSanctuary(): Museum {
     sanctuary.connectRoomTo(lizards, gift)
     sanctuary.connectRoomTo(insects, snakes)
     sanctuary.connectRoomTo(insects, gift)
-    sanctuary.connectRoomTo(snakes, entrance)
     sanctuary.connectRoomToExit(gift, exit)
+    sanctuary.connectRoomTo(snakes, entrance)
     return sanctuary
 }
 
@@ -47,9 +47,9 @@ fun createAnimalSanctuaryWithUnreachableRooms(): Museum {
     val sanctuary = Museum("Animal sanctuary", entrance)
     sanctuary.addRoom(bats)
     sanctuary.addRoom(lizards)
-    sanctuary.addRoom(snakes)
     sanctuary.addRoom(insects)
     sanctuary.addRoom(gift)
+    sanctuary.addRoom(snakes)
     sanctuary.connectRoomTo(bats, lizards)
     sanctuary.connectRoomTo(lizards, insects)
     sanctuary.connectRoomTo(lizards, gift)
@@ -71,9 +71,9 @@ fun createAnimalSanctuaryWithRoomsThatDoNotLeadToExit(): Museum {
     val sanctuary = Museum("Animal sanctuary", entrance)
     sanctuary.addRoom(bats)
     sanctuary.addRoom(lizards)
-    sanctuary.addRoom(snakes)
     sanctuary.addRoom(insects)
     sanctuary.addRoom(gift)
+    sanctuary.addRoom(snakes)
     sanctuary.connectRoomTo(entrance, bats)
     sanctuary.connectRoomTo(bats, lizards)
     sanctuary.connectRoomTo(lizards, insects)
@@ -84,5 +84,5 @@ fun createAnimalSanctuaryWithRoomsThatDoNotLeadToExit(): Museum {
 }
 
 fun main() {
-    println(mutableListOf(1,2,3,3).toSet())
+    println(setOf(1,2) - setOf(1))
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="museumvisit.MuseumTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-02-13T13:09:37" hostname="ash14.doc.ic.ac.uk" time="0.011">
+<testsuite name="museumvisit.MuseumTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-02-13T16:46:56" hostname="ash14.doc.ic.ac.uk" time="0.011">
   <properties/>
-  <testcase name="test animal santuary with rooms that do not lead to exit" classname="museumvisit.MuseumTest" time="0.011">
-    <failure message="Unreachable rooms: SnakesSnakes" type="museumvisit.UnreachableRoomsException">Unreachable rooms: SnakesSnakes
-	at app//museumvisit.Museum.checkWellFormed(Museum.kt:83)
-	at app//museumvisit.MuseumTest.test animal santuary with rooms that do not lead to exit(MuseumTest.kt:54)
+  <testcase name="test well formed animal santuary" classname="museumvisit.MuseumTest" time="0.011">
+    <failure message="Unreachable rooms: Entrance hall, Bats, Snakes, Entrance hall, Bats, Snakes, " type="museumvisit.CannotExitMuseumException">Unreachable rooms: Entrance hall, Bats, Snakes, Entrance hall, Bats, Snakes, 
+	at app//museumvisit.Museum.checkWellFormed(Museum.kt:133)
+	at app//museumvisit.MuseumTest.test well formed animal santuary(MuseumTest.kt:33)
 	at java.base@17.0.9/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base@17.0.9/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base@17.0.9/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

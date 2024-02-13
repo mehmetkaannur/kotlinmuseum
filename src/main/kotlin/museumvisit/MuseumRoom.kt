@@ -41,5 +41,3 @@ class Outside(exitName: String) : MuseumRoom(exitName, Int.MAX_VALUE) {
         occupancy += 1
     }
 }
-
-
