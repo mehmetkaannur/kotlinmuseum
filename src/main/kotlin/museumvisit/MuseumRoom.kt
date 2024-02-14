@@ -33,7 +33,8 @@ open class MuseumRoom(open val name: String, open val capacity: Int) {
     }
 }
 
-class Outside(exitName: String) : MuseumRoom(exitName, Int.MAX_VALUE) {
+class Outside(exitName: String = "Outside") :
+    MuseumRoom(exitName, Int.MAX_VALUE) {
 
     override var occupancy = 0
 
