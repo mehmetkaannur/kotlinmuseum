@@ -80,5 +80,5 @@ fun createAnimalSanctuaryWithRoomsThatDoNotLeadToExit(): Museum {
 }
 
 fun main() {
-    println(setOf(1,2) - setOf(1))
+    println(createArtGallery().toString())
 }

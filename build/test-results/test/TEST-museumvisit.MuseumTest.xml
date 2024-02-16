@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="museumvisit.MuseumTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2024-02-14T14:57:47" hostname="ash14.doc.ic.ac.uk" time="0.036">
+<testsuite name="museumvisit.MuseumTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-16T23:29:29" hostname="dyn3140-157.wlan.ic.ac.uk" time="0.021">
   <properties/>
-  <testcase name="cannot connect unknown room to exit" classname="museumvisit.MuseumTest" time="0.013"/>
-  <testcase name="test well formed animal santuary" classname="museumvisit.MuseumTest" time="0.004"/>
-  <testcase name="cannot connect rooms if first is unknown" classname="museumvisit.MuseumTest" time="0.0"/>
-  <testcase name="cannot add room multiple times" classname="museumvisit.MuseumTest" time="0.0"/>
-  <testcase name="test animal santuary with rooms that do not lead to exit" classname="museumvisit.MuseumTest" time="0.012"/>
-  <testcase name="test well formed art gallery" classname="museumvisit.MuseumTest" time="0.0"/>
-  <testcase name="cannot connect room to same room multiple times" classname="museumvisit.MuseumTest" time="0.0"/>
-  <testcase name="test animal santuary with unreachable rooms" classname="museumvisit.MuseumTest" time="0.001"/>
-  <testcase name="cannot connect room to self" classname="museumvisit.MuseumTest" time="0.0"/>
-  <testcase name="test toString animal sanctuary" classname="museumvisit.MuseumTest" time="0.004"/>
+  <testcase name="test toString art gallery" classname="museumvisit.MuseumTest" time="0.021"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

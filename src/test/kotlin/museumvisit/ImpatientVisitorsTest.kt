@@ -1,6 +1,6 @@
 package museumvisit
 
-/*
+
 import org.junit.Test
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
@@ -55,4 +55,4 @@ class ImpatientVisitorsTest {
         testMuseumVisit(createAquariumMuseumUnderTest(), lotsOfPeople)
     }
 }
-*/
+

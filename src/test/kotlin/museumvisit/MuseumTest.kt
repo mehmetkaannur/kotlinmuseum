@@ -24,6 +24,19 @@ class MuseumTest {
     }
 
     @Test
+    fun `test toString art gallery`() {
+        assertEquals(
+                """
+                    Art gallery
+                    Entrance hall leads to: Exhibition room
+                    Exhibition room leads to: Outside
+
+            """.trimIndent(),
+                createArtGallery().toString(),
+        )
+    }
+
+    @Test
     fun `test well formed art gallery`() {
         createArtGallery().checkWellFormed()
     }

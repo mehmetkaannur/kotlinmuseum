@@ -1,7 +1,7 @@
 package museumvisit
 
 fun main() {
-/*
+
     val visitorNames = listOf(
         "Neha",
         "Alex",
@@ -35,5 +35,5 @@ fun main() {
     visitors.forEach { it.start() }
     visitors.forEach { it.join() }
 
-*/
+
 }

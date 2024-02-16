@@ -123,4 +123,12 @@ class Museum(val name: String, val entrance: MuseumRoom) {
         }
         return roomsVisited
     }
+
+    fun passThroughTurnstile(currentRoom: MuseumRoom, chosenRoom: MuseumRoom?): Boolean {
+        return if (currentRoom != chosenRoom && chosenRoom != null) {
+            true
+        } else {
+            false
+        }
+    }
 }
